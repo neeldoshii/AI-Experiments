@@ -1,22 +1,23 @@
-# Adjacency Matrix
-graphs = {
-    '5' : ['3','7'],
-    '3' : ['2','4'],
-    '7' : ['8'],
-    '2' : [],
-    '4' : ['8'],
-    '8' : []
-}
+def create_graph():
+    graphs = {}
+    nodes = int(input("Enter the number of nodes: "))
+    for i in range(nodes):
+        node = input("Enter node: ")
+        neighbors_input = input("Enter neighbors (comma-separated): ")
+        neighbors = neighbors_input.split(',') if neighbors_input else []
+        graphs[node] = neighbors
+    return graphs
 
-visited = set() # sets to keep track of visited nodes 
-
-def dfs(visited,graphs,node):
-
+def dfs(visited, graphs, node):
     if node not in visited:
-        print(node)
+        print(node, end=" ")
         visited.add(node)
 
-        for neighbors in graphs[node]:
-            dfs(visited,graphs,neighbors)
+        for neighbor in graphs[node]:
+            dfs(visited, graphs, neighbor)
 
-dfs(visited,graphs,'5')            
+print("Depth First Search")
+graphs = create_graph()
+start_node = input("Enter the starting node for DFS: ")
+visited = set() # sets to keep track of visited nodes 
+dfs(visited, graphs, start_node)
