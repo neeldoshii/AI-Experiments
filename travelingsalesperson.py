@@ -3,7 +3,10 @@ from itertools import permutations
 NUM_CITIES = 4
 
 def travelling_salesman(graph, start):
-    cities = [i for i in range(NUM_CITIES) if i != start]
+    cities = []
+    for i in range(NUM_CITIES):
+        if i != start:
+            cities.append(i)
 
     min_path = 99999
     for i in permutations(cities):
